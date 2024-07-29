@@ -32,6 +32,8 @@ if ingredients_list:
     ingredients_string=''
     for each_fruit in ingredients_list:
         ingredients_string+= each_fruit+' '
+        fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+        fv_df=st.dataframe(data=fruityvice_response.json(),use_container_width=True)
 #st.write(ingredients_string)
 
     my_insert_stmt = """ insert into smoothies.public.orders(ingredients,Name_on_Order)
@@ -45,6 +47,4 @@ if time_to_insert:
     st.success('Your Smoothie is ordered, {}!'.format(Name_on_Order), icon="✅")
 
 import requests
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
-#st.text(fruityvice_response.json(),use_container_width=True)
-fv_df=st.dataframe(data=fruityvice_response.json(),use_container_width=True)
+
